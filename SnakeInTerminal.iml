@@ -8,5 +8,15 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="module-library">
+      <library name="googlecode.lanterna" type="repository">
+        <properties maven-id="com.googlecode.lanterna:lanterna:3.1.1" />
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/lanterna/lanterna/3.1.1/lanterna-3.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
