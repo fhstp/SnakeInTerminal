@@ -21,4 +21,5 @@ private fun printSnakeTo(gfx: TextGraphics, snake: Snake) {
 fun printTo(gfx: TextGraphics, game: Game) {
     printSnakeTo(gfx, game.snake)
     printWallsTo(gfx, game.size)
+    gfx.putString(0, game.size + 2, game.score.toString())
 }

@@ -25,7 +25,7 @@ fun runGame(terminal: Terminal, gameSize: Int, snakeLength: Int) {
 
     while (true) {
         terminal.clearScreen()
-        
+
         val input = terminal.pollInput()
         // Close when pressing ESC or when closing the game-window
         // (Lanterna emits EOF when closing the window)
@@ -37,7 +37,7 @@ fun runGame(terminal: Terminal, gameSize: Int, snakeLength: Int) {
         game = nextFrame(inputDirection, game)
         printTo(gfx, game)
         terminal.flush()
-        
+
         Thread.sleep(500)
     }
 }
@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
         ?: throw Exception("Snake-length argument is not an integer")
 
     val terminal = DefaultTerminalFactory()
-        .setInitialTerminalSize(TerminalSize(gameSize + 2, gameSize + 2))
+        .setInitialTerminalSize(TerminalSize(gameSize + 2, gameSize + 3))
         .createTerminal()
 
     runGame(terminal, gameSize, snakeLength)
