@@ -2,6 +2,7 @@ import com.googlecode.lanterna.graphics.TextGraphics
 
 private const val wallCharacter = '#'
 private const val snakeCharacter = 'o'
+private const val appleCharacter = 'a'
 
 private fun printWallsTo(gfx: TextGraphics, gameSize: Int) {
     val maxIndex = gameSize + 1
@@ -18,7 +19,12 @@ private fun printSnakeTo(gfx: TextGraphics, snake: Snake) {
     }
 }
 
+private fun printAppleTo(gfx: TextGraphics, apple: Apple) {
+    gfx.setCharacter(apple, appleCharacter)
+}
+
 fun printTo(gfx: TextGraphics, game: Game) {
+    printAppleTo(gfx, game.apple)
     printSnakeTo(gfx, game.snake)
     printWallsTo(gfx, game.size)
     gfx.putString(0, game.size + 2, game.score.toString())
