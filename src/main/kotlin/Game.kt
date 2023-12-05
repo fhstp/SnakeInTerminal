@@ -9,5 +9,7 @@ fun makeNewGame(size: Int, snakeLength: Int): Game {
 }
 
 fun nextFrame(input: Direction?, game: Game): Game {
+    if (input != null)
+        return game.copy(snake = tryChangeHeading(game.snake, input))
     return game
 }

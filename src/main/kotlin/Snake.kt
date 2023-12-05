@@ -10,3 +10,11 @@ fun makeSnake(
     val positions = List(initialLength) { initialPosition }
     return Snake(positions, initialHeading)
 }
+
+fun tryChangeHeading(snake: Snake, heading: Direction): Snake {
+    val shouldChangeHeading = is90DegreeAngle(heading, snake.heading)
+
+    if (!shouldChangeHeading)
+        return snake
+    return snake.copy(heading = heading)
+}
