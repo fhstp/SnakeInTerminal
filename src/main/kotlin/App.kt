@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import java.lang.Exception
@@ -8,7 +9,9 @@ fun main(args: Array<String>) {
     val gameSize = gameSizeInput.toIntOrNull()
         ?: throw Exception("Game-size argument is not an integer")
 
-    val terminal = DefaultTerminalFactory().createTerminal()
+    val terminal = DefaultTerminalFactory()
+        .setInitialTerminalSize(TerminalSize(gameSize + 2, gameSize + 2))
+        .createTerminal()
     terminal.enterPrivateMode()
     terminal.setCursorVisible(false)
 
