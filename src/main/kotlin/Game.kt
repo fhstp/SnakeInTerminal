@@ -20,18 +20,19 @@ fun makeNewGame(size: Int, snakeLength: Int): Game {
 }
 
 fun nextFrame(input: Direction?, game: Game): Game {
-    var newGame = game
+    @Suppress("NAME_SHADOWING") var game = game
+    
     if (input != null)
-        newGame = newGame.copy(snake = tryChangeHeading(newGame.snake, input))
-    newGame = newGame.copy(snake = move(newGame.snake))
+        game = game.copy(snake = tryChangeHeading(game.snake, input))
+    game = game.copy(snake = move(game.snake))
 
-    val snakeIsEatingApple = headOf(newGame.snake) == newGame.apple
+    val snakeIsEatingApple = headOf(game.snake) == game.apple
     if (snakeIsEatingApple)
-        newGame = newGame.copy(
-            snake = grow(newGame.snake),
-            apple = generateApple(newGame.rng, newGame.size),
-            score = newGame.score + appleScoreValue
+        game = game.copy(
+            snake = grow(game.snake),
+            apple = generateApple(game.rng, game.size),
+            score = game.score + appleScoreValue
         )
 
-    return newGame
+    return game
 }
