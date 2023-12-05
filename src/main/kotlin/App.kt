@@ -1,3 +1,7 @@
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory
+
 fun main() {
-    println("Hello world")
+    val terminal = DefaultTerminalFactory().createTerminal()
+    terminal.enterPrivateMode()
+    terminal.putString("Hello world")
 }
