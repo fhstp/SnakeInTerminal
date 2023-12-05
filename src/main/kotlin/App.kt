@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
 
     while (true) {
         val input = terminal.pollInput()
-        if (input?.keyType == KeyType.Escape) break;
+        if (input?.keyType == KeyType.Escape) break
 
         printTo(terminal, game)
         terminal.flush()
