@@ -10,6 +10,7 @@ fun main(args: Array<String>) {
 
     val terminal = DefaultTerminalFactory().createTerminal()
     terminal.enterPrivateMode()
+    terminal.setCursorVisible(false)
 
     println("Starting snake\n\tGame-size: $gameSize")
 
