@@ -1,7 +1,18 @@
 import com.googlecode.lanterna.TerminalSize
+import com.googlecode.lanterna.input.KeyStroke
 import com.googlecode.lanterna.input.KeyType
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import java.lang.Exception
+
+fun tryDirectionFromKeyStroke(keyStroke: KeyStroke): Direction? {
+    return when (keyStroke.character) {
+        'w' -> Direction.UP
+        'd' -> Direction.RIGHT
+        's' -> Direction.DOWN
+        'a' -> Direction.LEFT
+        else -> null
+    }
+}
 
 fun main(args: Array<String>) {
     val gameSizeInput = args.getOrNull(0)
@@ -23,6 +34,9 @@ fun main(args: Array<String>) {
         // Close when pressing ESC or when closing the game-window
         // (Lanterna emits EOF when closing the window)
         if (input?.keyType == KeyType.Escape || input?.keyType == KeyType.EOF) break
+
+        val inputDirection =
+            if (input != null) tryDirectionFromKeyStroke(input) else null
 
         printTo(terminal, game)
         terminal.flush()
