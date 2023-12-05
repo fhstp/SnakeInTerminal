@@ -24,6 +24,8 @@ fun runGame(terminal: Terminal, gameSize: Int, snakeLength: Int) {
     var game = makeNewGame(gameSize, snakeLength)
 
     while (true) {
+        terminal.clearScreen()
+        
         val input = terminal.pollInput()
         // Close when pressing ESC or when closing the game-window
         // (Lanterna emits EOF when closing the window)
@@ -35,6 +37,8 @@ fun runGame(terminal: Terminal, gameSize: Int, snakeLength: Int) {
         game = nextFrame(inputDirection, game)
         printTo(gfx, game)
         terminal.flush()
+        
+        Thread.sleep(500)
     }
 }
 
