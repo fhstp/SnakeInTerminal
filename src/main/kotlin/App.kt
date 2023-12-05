@@ -2,7 +2,6 @@ import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyStroke
 import com.googlecode.lanterna.input.KeyType
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
-import java.lang.Exception
 
 fun tryDirectionFromKeyStroke(keyStroke: KeyStroke): Direction? {
     return when (keyStroke.character) {
@@ -33,8 +32,8 @@ fun main(args: Array<String>) {
     terminal.enterPrivateMode()
     terminal.setCursorVisible(false)
 
-    var game = Game(gameSize)
     println("Starting snake\n\tGame-size: $gameSize\n\tSnake-length: $snakeLength")
+    var game = makeNewGame(gameSize, snakeLength)
 
     while (true) {
         val input = terminal.pollInput()
