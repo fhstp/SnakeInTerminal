@@ -13,10 +13,14 @@ fun main(args: Array<String>) {
     terminal.setCursorVisible(false)
 
     println("Starting snake\n\tGame-size: $gameSize")
+    val game = Game(gameSize)
 
     while (true) {
         val input = terminal.pollInput()
         if (input?.keyType == KeyType.Escape) break;
+
+        printTo(terminal, game)
+        terminal.flush()
     }
 
     terminal.exitPrivateMode()
