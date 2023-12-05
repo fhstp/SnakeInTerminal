@@ -11,7 +11,6 @@ data class Game(
 )
 
 
-
 fun makeNewGame(size: Int, snakeLength: Int): Game {
     val center = TerminalPosition(size / 2, size / 2)
     val snake = makeSnake(center, snakeLength, Direction.RIGHT)
@@ -25,6 +24,14 @@ fun nextFrame(input: Direction?, game: Game): Game {
     if (input != null)
         newGame = newGame.copy(snake = tryChangeHeading(newGame.snake, input))
     newGame = newGame.copy(snake = move(newGame.snake))
+
+    val snakeIsEatingApple = headOf(newGame.snake) == newGame.apple
+    if (snakeIsEatingApple)
+        newGame = newGame.copy(
+            snake = grow(newGame.snake),
+            apple = generateApple(newGame.rng, newGame.size),
+            score = newGame.score + appleScoreValue
+        )
 
     return newGame
 }
