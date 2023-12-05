@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
     terminal.setCursorVisible(false)
 
     println("Starting snake\n\tGame-size: $gameSize")
-    val game = Game(gameSize)
+    var game = Game(gameSize)
 
     while (true) {
         val input = terminal.pollInput()
@@ -38,6 +38,7 @@ fun main(args: Array<String>) {
         val inputDirection =
             if (input != null) tryDirectionFromKeyStroke(input) else null
 
+        game = nextFrame(inputDirection, game)
         printTo(terminal, game)
         terminal.flush()
     }
