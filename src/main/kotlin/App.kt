@@ -28,6 +28,8 @@ fun main(args: Array<String>) {
     val terminal = DefaultTerminalFactory()
         .setInitialTerminalSize(TerminalSize(gameSize + 2, gameSize + 2))
         .createTerminal()
+    val gfx = terminal.newTextGraphics()
+
     terminal.enterPrivateMode()
     terminal.setCursorVisible(false)
 
@@ -44,7 +46,7 @@ fun main(args: Array<String>) {
             if (input != null) tryDirectionFromKeyStroke(input) else null
 
         game = nextFrame(inputDirection, game)
-        printTo(terminal, game)
+        printTo(gfx, game)
         terminal.flush()
     }
 
