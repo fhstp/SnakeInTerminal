@@ -20,7 +20,9 @@ fun main(args: Array<String>) {
 
     while (true) {
         val input = terminal.pollInput()
-        if (input?.keyType == KeyType.Escape) break
+        // Close when pressing ESC or when closing the game-window
+        // (Lanterna emits EOF when closing the window)
+        if (input?.keyType == KeyType.Escape || input?.keyType == KeyType.EOF) break
 
         printTo(terminal, game)
         terminal.flush()
