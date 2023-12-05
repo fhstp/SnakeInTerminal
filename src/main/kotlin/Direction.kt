@@ -1,13 +1,24 @@
-import kotlin.math.abs
+import com.googlecode.lanterna.TerminalPosition
 
-enum class Direction(val angle: Int) {
-    UP(90), RIGHT(0), DOWN(270), LEFT(180)
+// TerminalPosition is here interpreted as a vector
+enum class Direction(val vector: TerminalPosition) {
+    UP(TerminalPosition(0, -1)),
+    RIGHT(TerminalPosition(1, 0)),
+    DOWN(TerminalPosition(0, 1)),
+    LEFT(TerminalPosition(-1, 0))
 }
 
 fun is90DegreeAngle(
     direction1: Direction,
     direction2: Direction
 ): Boolean {
-    val diff = abs(direction1.angle - direction2.angle)
-    return diff == 90 || diff == 270
+    return direction1.vector.row != direction2.vector.row &&
+            direction1.vector.column != direction2.vector.column
+}
+
+fun neighborOf(
+    position: TerminalPosition,
+    direction: Direction
+): TerminalPosition {
+    return position + direction.vector
 }

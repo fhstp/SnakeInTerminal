@@ -18,3 +18,13 @@ fun tryChangeHeading(snake: Snake, heading: Direction): Snake {
         return snake
     return snake.copy(heading = heading)
 }
+
+private fun headOf(snake: Snake): TerminalPosition {
+    return snake.positions.last()
+}
+
+fun move(snake: Snake): Snake {
+    val nextHead = neighborOf(headOf(snake), snake.heading)
+    val newPositions = snake.positions.drop(1) + nextHead
+    return snake.copy(positions = newPositions)
+}
