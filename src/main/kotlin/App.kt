@@ -20,14 +20,19 @@ fun main(args: Array<String>) {
     val gameSize = gameSizeInput.toIntOrNull()
         ?: throw Exception("Game-size argument is not an integer")
 
+    val snakeLengthInput = args.getOrNull(1)
+        ?: throw Exception("Program is missing snake-length argument")
+    val snakeLength = snakeLengthInput.toIntOrNull()
+        ?: throw Exception("Snake-length argument is not an integer")
+
     val terminal = DefaultTerminalFactory()
         .setInitialTerminalSize(TerminalSize(gameSize + 2, gameSize + 2))
         .createTerminal()
     terminal.enterPrivateMode()
     terminal.setCursorVisible(false)
 
-    println("Starting snake\n\tGame-size: $gameSize")
     var game = Game(gameSize)
+    println("Starting snake\n\tGame-size: $gameSize\n\tSnake-length: $snakeLength")
 
     while (true) {
         val input = terminal.pollInput()
