@@ -24,6 +24,13 @@ private fun printAppleTo(gfx: TextGraphics, apple: Apple) {
 }
 
 fun printTo(gfx: TextGraphics, game: Game) {
+    if (game.gameOver) {
+        gfx.putString(0, 0, "GAME OVER")
+        gfx.putString(0, 1, "Final score:")
+        gfx.putString(0, 2, game.score.toString())
+        return
+    }
+
     printAppleTo(gfx, game.apple)
     printSnakeTo(gfx, game.snake)
     printWallsTo(gfx, game.size)

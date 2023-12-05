@@ -23,6 +23,10 @@ fun headOf(snake: Snake): TerminalPosition {
     return snake.positions.last()
 }
 
+fun tailOf(snake: Snake): List<TerminalPosition> {
+    return snake.positions.dropLast(1)
+}
+
 fun move(snake: Snake): Snake {
     val nextHead = neighborOf(headOf(snake), snake.heading)
     val newPositions = snake.positions.drop(1) + nextHead
@@ -31,4 +35,8 @@ fun move(snake: Snake): Snake {
 
 fun grow(snake: Snake): Snake {
     return snake.copy(positions = snake.positions.take(1) + snake.positions)
+}
+
+fun isBitingSelf(snake: Snake): Boolean {
+    return tailOf(snake).contains(headOf(snake))
 }
